@@ -23,17 +23,18 @@ AngielskieSlowa={"country":"Panstwo:",
                  "critical":"W stanie krytycznym:"
                  }
 
-#PARAMETRY=["World","ddf"]
-#total = len(sys.argv)
- 
-# Get the arguments list 
-#cmdargs = str(sys.argv)
-#print (cmdargs)
+def sprawdz_parametry():
+    PARAMETRY=[]
+    total = len(sys.argv)
+    cmdargs = sys.argv
+    if total==1:
+        PARAMETRY=["World"]
+    else:
+        PARAMETRY=cmdargs[1:]
+    return PARAMETRY
 
-if total==1:
-    PARAMETRY=
 
-"""
+
 def polacz_sie(_link):
     try:
         _HTML_BODY=urlopen(_link)
@@ -58,25 +59,38 @@ def json_dekoduj(_body):
         for i in JSON_DECODE:        
             JSON_DECODE_TRANS[AngielskieSlowa[i]]=JSON_DECODE[i]
         return JSON_DECODE_TRANS
-
-
-
+"""
 def WYPISZ_DANE(dane):
     dl=len(max(dane.keys(),key=len))
     for i in dane:
         print (f"{i:25} {dane[i]}")
+"""
 
-kraje={}
-kraj="poland"
-HTML_BODY=polacz_sie(LINK+kraj)
-JSON_DECODE_TRANS=json_dekoduj(HTML_BODY)
-kraje["poland"]=JSON_DECODE_TRANS
+def dodaj_kraje_do_tablicy(KTORE_KRAJE):        
+    kraje={}
+    for i in KTORE_KRAJE:
+        kraj=i
+        HTML_BODY=polacz_sie(LINK+kraj)
+        JSON_DECODE_TRANS=json_dekoduj(HTML_BODY)
+        kraje[i]=JSON_DECODE_TRANS
+    return kraje
 
-kraj="sweden"
-HTML_BODY=polacz_sie(LINK+kraj)
-JSON_DECODE_TRANS=json_dekoduj(HTML_BODY)
-kraje["sweden"]=JSON_DECODE_TRANS
 
+def wypisz_kraje(kraje):
+    for i in AngielskieSlowa.values():
+        print (f"{i:25} ",end='')
+        for j in kraje:
+            print (f"{kraje[j][i]:<10}",end='')
+        print ("")
+
+
+
+KTORE_KRAJE=sprawdz_parametry()
+kraje=dodaj_kraje_do_tablicy(KTORE_KRAJE)
+wypisz_kraje(kraje)
+
+
+"""
 for i in AngielskieSlowa.values():
     print (f"{i:25} ",end='')
     for j in kraje:
