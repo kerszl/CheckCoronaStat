@@ -12,7 +12,7 @@ LINK='https://coronavirus-19-api.herokuapp.com/countries/'
 AngielskieSlowa={"country":"Panstwo:",
                  "testsPerOneMillion":"Testy na milion:",
                  "todayCases":"Dzisiejsze przypadki:",
-                 "totalTests":"Ilosc wszystkich testow:",
+                 "totalTests":"Liczba wszystkich testow:",
                  "todayDeaths":"Dzisiejsze zgony:",
                  "deathsPerOneMillion":"Zgony na milion:",
                  "cases":"Wszystkie przypadki:",
@@ -23,9 +23,17 @@ AngielskieSlowa={"country":"Panstwo:",
                  "critical":"W stanie krytycznym:"
                  }
 
+#PARAMETRY=["World","ddf"]
+#total = len(sys.argv)
+ 
+# Get the arguments list 
+#cmdargs = str(sys.argv)
+#print (cmdargs)
 
+if total==1:
+    PARAMETRY=
 
-
+"""
 def polacz_sie(_link):
     try:
         _HTML_BODY=urlopen(_link)
@@ -70,28 +78,9 @@ JSON_DECODE_TRANS=json_dekoduj(HTML_BODY)
 kraje["sweden"]=JSON_DECODE_TRANS
 
 for i in AngielskieSlowa.values():
-    print (i+" ",end=' ')
+    print (f"{i:25} ",end='')
     for j in kraje:
-        print (kraje[j][i],end=' ')
+        print (f"{kraje[j][i]:<10}",end='')
     print ("")
-
-
-"""
-print ("Panstwo: ",end=' ')
-for i in kraje:
-    print (kraje[i]["Panstwo:"],end=' ')
-print ("")
-print ("Wyleczeni: ",end='')
-for i in kraje:
-    print (kraje[i]["Wyleczeni:"],end=' ')
-"""    
-    
-
-"""
-for i in kraje:
-    for j in kraje[i]:
-        a=str(j)
-        b=str(kraje[i][j])
-        print (a+b)
 
 """
