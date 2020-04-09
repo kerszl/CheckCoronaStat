@@ -2,8 +2,11 @@
 #CheckCoronaStat
 from urllib.request import urlopen
 from urllib.error import URLError
+from  datetime import datetime
 import json
 import sys
+import re
+
 
 LINK='https://coronavirus-19-api.herokuapp.com/countries/'
 BLEDY_POLACZENIA={"[Errno 11001] getaddrinfo failed":"Nie moge wczytaj strony"}
@@ -27,6 +30,11 @@ AngielskieSlowa={"country":"Panstwo:",
                  "recovered":"Wyleczeni:",
                  "critical":"W stanie krytycznym:"
                  }
+PL_EN={}
+PL_EN["Norway"]="Norwegia"
+PL_EN["Sweden"]="Szwecja"
+PL_EN["Poland"]="Polska"
+PL_EN["World"]="Swiat"
 
 
 def wyswietl_kraje ():
@@ -104,14 +112,44 @@ def wypisz_kraje(kraje):
     for i in AngielskieSlowa.values():
         print (f"{i:25} ",end='')
         for j in kraje:
-            print (f"{kraje[j][i]:<10}",end='')
+            #print (i)
+#            print (kraje["World"]["Panstwo:"])
+#            if kraje["World"]["Panstwo:"]=="World":
+#               print ("haha")
+            if kraje[j][i]==j:
+                print (f"{PL_EN[j]:<10}",end='')
+            else:
+                print (f"{kraje[j][i]:<10}",end='')
         print ("")
 
+def wypisz_date ():
+    czas=datetime.now()
+    
+    print (f"{'Stan na:':<25} {czas}")
+    
 
-#wyswietl_kraje()
+
 
 KTORE_KRAJE=sprawdz_ilosc_parametrow()
 kraje=dodaj_kraje_do_tablicy(KTORE_KRAJE)
 wypisz_kraje(kraje)
+wypisz_date()
 
 
+"""
+question="norway"
+#question="North%20Macedonia"
+#moj_url='https://translate.googleapis.com/translate_a/single?client=gtx&sl=pl&tl=en&dt=t&q=${question}'
+#moj_url='https://translate.googleapis.com/translate_a/single?client=gtx&sl=pl&tl=en&dt=t&q=$Norwegia'
+moj_url='https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=pl&dt=t&q=$'
+
+
+przetlumaczone=urlopen(moj_url+question)
+HTML_BODY=przetlumaczone.read()
+#print (HTML_BODY)
+
+#wynik=re.search(' [a-zA-Z ]*',str(HTML_BODY))
+#print (re.sub('\[\[\[\"\$ ','',str(HTML_BODY)))
+
+#print (wynik[0].strip())
+"""
