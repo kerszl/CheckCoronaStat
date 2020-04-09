@@ -59,12 +59,7 @@ def json_dekoduj(_body):
         for i in JSON_DECODE:        
             JSON_DECODE_TRANS[AngielskieSlowa[i]]=JSON_DECODE[i]
         return JSON_DECODE_TRANS
-"""
-def WYPISZ_DANE(dane):
-    dl=len(max(dane.keys(),key=len))
-    for i in dane:
-        print (f"{i:25} {dane[i]}")
-"""
+
 
 def dodaj_kraje_do_tablicy(KTORE_KRAJE):        
     kraje={}
@@ -90,11 +85,3 @@ kraje=dodaj_kraje_do_tablicy(KTORE_KRAJE)
 wypisz_kraje(kraje)
 
 
-"""
-for i in AngielskieSlowa.values():
-    print (f"{i:25} ",end='')
-    for j in kraje:
-        print (f"{kraje[j][i]:<10}",end='')
-    print ("")
-
-"""
