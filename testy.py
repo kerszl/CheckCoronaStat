@@ -3,6 +3,7 @@ text="poszla szkola do"
 lista = list(text.split())
 print (lista)
 """
+"""
 AngielskieSlowa={"testsPerOneMillion":"Testy na milion:",
                  "todayCases":"Dzisiejsze przypadki:",
                  "totalTests":"Ilosc wszystkich testow:",
@@ -19,6 +20,7 @@ AngielskieSlowa={"testsPerOneMillion":"Testy na milion:",
 
 for i in AngielskieSlowa.keys():
     print (i)
+"""    
 """
 JakiesDane={"testsPerOneMillion":"33"}
 JakiesDaneTranslate={}
@@ -28,3 +30,4 @@ print (AngielskieSlowa["testsPerOneMillion"])
 print (JakiesDane["testsPerOneMillion"])
 print (JakiesDaneTranslate)
 """
+print ("pies".capitalize())

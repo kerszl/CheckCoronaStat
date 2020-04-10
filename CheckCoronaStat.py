@@ -16,7 +16,7 @@ WSZYSTKIE_KRAJE=["Sprobuj: CheckCoronaStat"]
 
 
 
-
+PL_EN={}
 AngielskieSlowa={"country":"Panstwo:",
                  "testsPerOneMillion":"Testy na milion:",
                  "todayCases":"Dzisiejsze przypadki:",
@@ -30,14 +30,10 @@ AngielskieSlowa={"country":"Panstwo:",
                  "recovered":"Wyleczeni:",
                  "critical":"W stanie krytycznym:"
                  }
-PL_EN={}
-PL_EN["Norway"]="Norwegia"
-PL_EN["Sweden"]="Szwecja"
-PL_EN["Poland"]="Polska"
-PL_EN["World"]="Swiat"
 
 
-def wyswietl_kraje ():
+
+def wyswietl_wszystkie_kraje_swiata ():
     BODY=polacz_sie(LINK)
     WSZYSTKIE_KRAJE_NAZWA=json.loads(BODY)
     POSORTOWANE_KRAJE=[]
@@ -46,9 +42,12 @@ def wyswietl_kraje ():
     len_POSORTOWANE_KRAJE=len(POSORTOWANE_KRAJE)
     for counter,i in enumerate(sorted(POSORTOWANE_KRAJE)):         
         if counter>0 and counter<len_POSORTOWANE_KRAJE-1:
-            print (i+", ",end='')
+            if i!="Total:":
+                i=i.replace(" ","%20")
+                print (i+", ",end='')
         if counter==len_POSORTOWANE_KRAJE-1:
             print (i+" ",end='')
+    return sorted(POSORTOWANE_KRAJE)
 
 
 
@@ -61,9 +60,11 @@ def sprawdz_ilosc_parametrow():
         PARAMETRY=["World"]
         return PARAMETRY        
     if total==2 and WSZYSTKIE_KRAJE_PARAM[0]==cmdargs[1]:        
-            wyswietl_kraje ()
+            wyswietl_wszystkie_kraje_swiata ()
             exit()
     PARAMETRY=cmdargs[1:]
+    for counter,i in enumerate(PARAMETRY):
+        PARAMETRY[counter]=i.capitalize()
     return PARAMETRY
 
 
@@ -98,9 +99,9 @@ def json_dekoduj(_body):
     return JSON_DECODE_TRANS
 
 
-def dodaj_kraje_do_tablicy(KTORE_KRAJE):        
+def dodaj_kraje_do_tablicy(WYBRANE_KRAJE):        
     kraje={}
-    for i in KTORE_KRAJE:
+    for i in WYBRANE_KRAJE:
         kraj=i
         HTML_BODY=polacz_sie(LINK+kraj)
         JSON_DECODE_TRANS=json_dekoduj(HTML_BODY)
@@ -112,10 +113,6 @@ def wypisz_kraje(kraje):
     for i in AngielskieSlowa.values():
         print (f"{i:25} ",end='')
         for j in kraje:
-            #print (i)
-#            print (kraje["World"]["Panstwo:"])
-#            if kraje["World"]["Panstwo:"]=="World":
-#               print ("haha")
             if kraje[j][i]==j:
                 print (f"{PL_EN[j]:<10}",end='')
             else:
@@ -123,25 +120,86 @@ def wypisz_kraje(kraje):
         print ("")
 
 def wypisz_date ():
-    czas=datetime.now()
-    
+    czas=datetime.now()    
     print (f"{'Stan na:':<25} {czas}")
-    
+
+def zaladuj_nazwy_krajow():
+    PL_EN_={}
+    with open('kraje.json', 'r') as f:
+        PL_EN_=json.load(f)
+    return PL_EN_
 
 
 
-KTORE_KRAJE=sprawdz_ilosc_parametrow()
-kraje=dodaj_kraje_do_tablicy(KTORE_KRAJE)
+
+
+
+"""
+def PRZETLUMACZ_EN2PL (WYBRANE_KRAJE_):
+    moj_url='https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=pl&dt=t&q=$'
+    for question in WYBRANE_KRAJE_:        
+        przetlumaczone=urlopen(moj_url+question)
+        HTML_BODY=przetlumaczone.read()
+        #print (HTML_BODY)
+        wynik=re.search(' [a-zA-Z ]*',str(HTML_BODY))
+        wynik=wynik[0].strip()
+        PL_EN[question.capitalize()]=wynik.capitalize()
+        sleep(2)
+"""        
+
+
+
+WYBRANE_KRAJE=sprawdz_ilosc_parametrow()
+#PRZETLUMACZ_EN2PL (WYBRANE_KRAJE)
+PL_EN=zaladuj_nazwy_krajow()
+kraje=dodaj_kraje_do_tablicy(WYBRANE_KRAJE)
 wypisz_kraje(kraje)
 wypisz_date()
 
+
+#print (PL_EN)
+#print (WSZYSTKIE_KRAJE_NAZWA)
+#WSZYSTKIE_KRAJE_NAZWA.remove('')
+#WSZYSTKIE_KRAJE_NAZWA_z=list(dict.fromkeys(WSZYSTKIE_KRAJE_NAZWA))
+#WSZYSTKIE_KRAJE_NAZWA_z.remove('Total:')
+#WSZYSTKIE_KRAJE_NAZWA_z2=[]
+#for i in WSZYSTKIE_KRAJE_NAZWA_z:
+#    print (i)
+#    a=str(i).replace(" ","%20")
+#    WSZYSTKIE_KRAJE_NAZWA_z2.append(a)    
+#print (WSZYSTKIE_KRAJE_NAZWA_z[0])
+#PRZETLUMACZ_EN2PL(WSZYSTKIE_KRAJE_NAZWA_z2[1:])
+#PRZETLUMACZ_EN2PL(PL_EN)
+#print (type(WSZYSTKIE_KRAJE_NAZWA_z))
+#for i in WSZYSTKIE_KRAJE_NAZWA_z:
+#    print (i)
+#print (PL_EN)
+#print (WSZYSTKIE_KRAJE_NAZWA)
+#with open('kraje.json', 'w') as f:
+    #json.dump(PL_EN, f, ensure_ascii=False)
+
+
+    
+    
+"""
+with open('polskie.txt', 'r') as f:
+    polskie = f.read().splitlines()
+
+for licz,i in enumerate(angielskie):
+    slownik[i]=polskie[licz]
+
+with open('kraje.json', 'w') as f:
+    json.dump(slownik, f, ensure_ascii=False)
+"""
+"""
+"""
 
 """
 question="norway"
 #question="North%20Macedonia"
 #moj_url='https://translate.googleapis.com/translate_a/single?client=gtx&sl=pl&tl=en&dt=t&q=${question}'
 #moj_url='https://translate.googleapis.com/translate_a/single?client=gtx&sl=pl&tl=en&dt=t&q=$Norwegia'
-moj_url='https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=pl&dt=t&q=$'
+
 
 
 przetlumaczone=urlopen(moj_url+question)
