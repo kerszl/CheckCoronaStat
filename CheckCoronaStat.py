@@ -181,6 +181,7 @@ wypisz_date()
 
     
     
+    
 """
 with open('polskie.txt', 'r') as f:
     polskie = f.read().splitlines()
