@@ -64,7 +64,9 @@ def sprawdz_ilosc_parametrow():
             exit()
     PARAMETRY=cmdargs[1:]
     for counter,i in enumerate(PARAMETRY):
-        PARAMETRY[counter]=i.capitalize()
+        #PARAMETRY[counter]=i.capitalize()
+        PARAMETRY[counter]=i[0].upper()+i[1:]
+        #PARAMETRY[counter]=i    
     return PARAMETRY
 
 
@@ -113,9 +115,10 @@ def wypisz_kraje(kraje):
     for i in AngielskieSlowa.values():
         print (f"{i:25} ",end='')
         for j in kraje:
-            if kraje[j][i]==j:
+            k=j.replace("%20"," ")
+            if kraje[j][i]==k:            
                 print (f"{PL_EN[j]:<10}",end='')
-            else:
+            else:       
                 print (f"{kraje[j][i]:<10}",end='')
         print ("")
 
@@ -150,7 +153,6 @@ def PRZETLUMACZ_EN2PL (WYBRANE_KRAJE_):
 
 
 WYBRANE_KRAJE=sprawdz_ilosc_parametrow()
-#PRZETLUMACZ_EN2PL (WYBRANE_KRAJE)
 PL_EN=zaladuj_nazwy_krajow()
 kraje=dodaj_kraje_do_tablicy(WYBRANE_KRAJE)
 wypisz_kraje(kraje)
@@ -181,7 +183,7 @@ wypisz_date()
 
     
     
-    
+
 """
 with open('polskie.txt', 'r') as f:
     polskie = f.read().splitlines()
@@ -199,8 +201,6 @@ with open('kraje.json', 'w') as f:
 question="norway"
 #question="North%20Macedonia"
 #moj_url='https://translate.googleapis.com/translate_a/single?client=gtx&sl=pl&tl=en&dt=t&q=${question}'
-#moj_url='https://translate.googleapis.com/translate_a/single?client=gtx&sl=pl&tl=en&dt=t&q=$Norwegia'
-
 
 
 przetlumaczone=urlopen(moj_url+question)

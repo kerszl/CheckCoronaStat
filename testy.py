@@ -30,4 +30,9 @@ print (AngielskieSlowa["testsPerOneMillion"])
 print (JakiesDane["testsPerOneMillion"])
 print (JakiesDaneTranslate)
 """
-print ("pies".capitalize())
+tablica =["Western%20Sahara","Western%20Sahar"]
+
+for string in tablica:
+if "Western%20SahaRa".lower() in tablica:
+    print("yest")
+#print ("pies".capitalize())
