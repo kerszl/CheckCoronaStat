@@ -1,5 +1,8 @@
 #made by Kerszi 08.04.2020
+#python >=3.6 (bo fstringi)
 #CheckCoronaStat
+#https://github.com/kerszl/CheckCoronaStat
+
 from urllib.request import urlopen
 from urllib.error import URLError
 from  datetime import datetime
@@ -151,8 +154,6 @@ def dodaj_kraje_do_tablicy(WYBRANE_KRAJE):
 
 def policz_wypisz_procenty(co,z_ilu):
     odstep2=14
-    #deaths=kraje[j][i]
-    #cases=kraje[j][AngielskieSlowa["cases"]]
     wynik=str(co)+f" ({(co/z_ilu)*100:.1f}%)"                    
     return f"{wynik:<{odstep2}}"
 
