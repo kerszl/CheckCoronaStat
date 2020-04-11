@@ -7,6 +7,42 @@ import json
 import sys
 import re
 
+#Niestety wszystko ma byc w jednym pliku, wiec
+#kod json nie potrzebny. Zostawiam go jednak tu
+"""
+def zaladuj_nazwy_krajow():
+    PL_EN_={}
+    try:
+        with open('kraje.json', 'r') as f:
+            PL_EN_=json.load(f)            
+    except:
+        print ("Jakis problem z plikiem: kraje.json")
+        exit()
+    return PL_EN_
+"""
+PL_EN={'Africa': 'Afryka', 'Albania': 'Albania', 'Algeria': 'Algieria', 'Andorra': 'Andora', 'Angola': 'Angola', 'Anguilla': 'Anguilla', 'Antigua%20and%20Barbuda': 'Antigua i Barbuda', 'Argentina': 'Argentyna', 'Armenia': 'Armenia', 'Aruba': 'Aruba', 'Asia': 'Azja', 'Australia': 'Australia', 'Austria': 'Austria', 'Azerbaijan': 'Azerbejdzan', 
+'Bahamas': 'Bahamy', 'Bahrain': 'Bahrajn', 'Bangladesh': 'Bangladesz', 'Barbados': 'Barbados', 'Belarus': 'Bialorus', 'Belgium': 'Belgia', 'Belize': 'Belize', 'Benin': 'Benin', 'Bermuda': 'Bermudy', 'Bhutan': 'Bhutan', 'Bolivia': 'Boliwia', 'Bosnia%20and%20Herzegovina': 'Bosnia i Hercegowina', 'Botswana': 'Botswana', 'Brazil': 'Brazylia', 'British%20Virgin%20Islands': 'Brytyjskie Wyspy Dziewicze', 'Brunei': 'Brunei', 'Bulgaria': 'Bulgaria', 'Burkina%20Faso': 'Burkina Faso', 'Burundi': 'Burundi',
+'Cabo%20Verde': 'Cabo Verde', 'Cambodia': 'Kambodza', 'Cameroon': 'Kamerun', 'Canada': 'Kanada', 'Caribbean%20Netherlands': 'Karaiby Holandia', 'Cayman%20Islands': 'Kajmany', 'Chad': 'Czad', 'Channel%20Islands': 'Wyspy Normandzkie', 'Chile': 'Chile', 'China': 'Chiny', 'Colombia': 'Kolumbia', 'Congo': 'Kongo', 'Costa%20Rica': 'Kostaryka', 'Croatia': 'Chorwacja', 'Cuba': 'Kuba', 'CuraĂ§ao': 'Curacao', 'Cyprus': 'Cypr', 'Czechia': 'Czechy',
+'Denmark': 'Dania', 'Diamond%20Princess': 'Diamentowa ksiezniczka', 'Djibouti': 'Dzibuti', 'Dominica': 'Dominika', 'Dominican%20Republic': 'Republika Dominikany',
+'Ecuador': 'Ekwador', 'Egypt': 'Egipt', 'El%20Salvador': 'Salwador', 'Equatorial%20Guinea':'Gwinea Rownikowa', 'Eritrea': 'Erytrea', 'Estonia': 'Estonia', 'Eswatini': 'Eswatini', 'Ethiopia': 'Etiopia', 'Europe': 'Europa', 
+'Faeroe%20Islands': 'Wyspy Owcze', 'Falkland%20Islands': 'Falklandy', 'Fiji': 'Fidzi', 'Finland': 'Finlandia', 'France': 'Francja', 'French%20Guiana': 'Gujana Francuska', 'French%20Polynesia': 'Polinezja Francuska',
+'Gabon': 'Gabon', 'Gambia': 'Gambia', 'Georgia': 'Gruzja', 'Germany': 'Niemcy', 'Ghana': 'Ghana', 'Gibraltar': 'Gibraltar', 'Greece': 'Grecja', 'Greenland': 'Grenlandia', 'Grenada': 'Grenada', 'Guadeloupe': 'Gwadelupa', 'Guatemala': 'Gwatemala', 'Guinea': 'Gwinea', 'Guinea-Bissau': 'Gwinea Bissau', 'Guyana': 'Gujana',
+'Haiti': 'Haiti', 'Honduras': 'Honduras', 'Hong%20Kong': 'Hongkong', 'Hungary': 'Wegry', 
+'Iceland': 'Islandia', 'India': 'Indie', 'Indonesia': 'Indonezja', 'Iran': 'Iran', 'Iraq': 'Irak', 'Ireland': 'Irlandia', 'Israel': 'Izrael', 'Italy': 'Wlochy', 'Ivory%20Coast': 'Wybrzeze Kosci Sloniowej', 
+'Jamaica': 'Jamajka', 'Japan': 'Japonia', 'Jordan': 'Jordania',
+'Kazakhstan': 'Kazachstan', 'Kenya': 'Kenia', 'Kuwait': 'Kuwejt', 'Kyrgyzstan': 'Kirgistan',
+'Laos': 'Laos', 'Latvia': 'Lotwa', 'Lebanon': 'Liban', 'Liberia': 'Liberia', 'Libya': 'Libia', 'Liechtenstein': 'Liechtenstein', 'Lithuania': 'Litwa', 'Luxembourg': 'Luksemburg', 
+'MS%20Zaandam': 'MS Zaandam', 'Macao': 'Makao', 'Madagascar': 'Madagaskar', 'Malawi': 'Malawi', 'Malaysia': 'Malezja', 'Maldives': 'Malediwy', 'Mali': 'Mali', 'Malta': 'Malta', 'Martinique': 'Martynika', 'Mauritania': 'Mauretania', 'Mauritius': 'Mauritius', 'Mayotte': 'Majotta', 'Mexico': 'Meksyk', 'Moldova': 'Moldawia', 'Monaco': 'Monako', 'Mongolia': 'Mongolia', 'Montenegro': 'Czarnogora', 'Montserrat': 'Montserrat', 'Morocco': 'Maroko', 'Mozambique': 'Mozambik', 'Myanmar': 'Myanmar', 
+'Namibia': 'Namibia', 'Nepal': 'Nepal', 'Netherlands': 'Holandia', 'New%20Caledonia': 'Nowa Kaledonia', 'New%20Zealand': 'Nowa Zelandia', 'Nicaragua': 'Nikaragua', 'Niger': 'Niger', 'Nigeria': 'Nigeria', 'North%20America': 'Ameryka polnocna', 'North%20Macedonia': 'Macedonia Polnocna', 'Norway': 'Norwegia',
+'Oceania': 'Oceania', 'Oman': 'Oman', 
+'Pakistan': 'Pakistan', 'Palestine': 'Palestyna', 'Panama': 'Panama', 'Papua%20New%20Guinea': 'Papua Nowa Gwinea', 'Paraguay': 'Paragwaj', 'Peru': 'Peru', 'Philippines': 'Filipiny', 'Poland': 'Polska', 'Portugal': 'Portugalia', 'Qatar': 'Katar', 
+'Romania': 'Rumunia', 'Russia': 'Rosja', 'Rwanda': 'Rwanda', 
+'S.%20Korea': 'Poludniowa Korea', 'Saint%20Kitts%20and%20Nevis': 'Saint Kitts i Nevis', 'Saint%20Lucia': 'Swieta Lucia', 'Saint%20Martin': 'Swiety Marcin', 'Saint%20Pierre%20Miquelon': 'Saint Pierre Miquelon', 'San%20Marino': 'San Marino', 'Saudi%20Arabia': 'Arabia Saudyjska', 'Senegal': 'Senegal', 'Serbia': 'Serbia', 'Seychelles': 'Seszele', 'Sierra%20Leone': 'Sierra Leone', 'Singapore': 'Singapur', 'Sint%20Maarten': 'Sint Maarten', 'Slovakia': 'Slowacja', 'Slovenia': 'Slowenia', 'Somalia': 'Somali', 'South%20Africa': 'Afryka Poludniowa', 'South%20America': 'Ameryka Poludniowa', 'South%20Sudan': 'Poludniowy Sudan', 'Spain': 'Hiszpania', 'Sri%20Lanka': 'Sri Lanka', 'St.%20Barth': 'St. Barth', 'Sudan': 'Sudan', 'Suriname': 'Surinam', 'Sweden': 'Szwecja', 'Switzerland': 'Szwajcaria', 'Syria': 'Syria', 
+'Taiwan': 'Tajwan', 'Tanzania': 'Tanzania', 'Thailand': 'Tajlandia', 'Timor-Leste': 'Timor Wschodni', 'Togo': 'Togo', 'Trinidad%20and%20Tobago': 'Trynidad i Tobago', 'Tunisia': 'Tunezja', 'Turkey': 'Turcja',
+'UK': 'UK', 'USA': 'USA', 'Uganda': 'Uganda', 'Ukraine': 'Ukraina', 'Uruguay': 'Urugwaj', 'Uzbekistan': 'Uzbekistan', 
+'Vatican%20City': 'Watykan', 'Venezuela': 'Wenezuela', 'Vietnam': 'Wietnam', 
+'Western%20Sahara': 'Sahara Zachodnia', 'World': 'Swiat', 
+'Yemen': 'Jemen', 'Zambia': 'Zambia', 'Zimbabwe': 'Zimbabwe'}
 
 LINK='https://coronavirus-19-api.herokuapp.com/countries/'
 BLEDY_POLACZENIA={"[Errno 11001] getaddrinfo failed":"Nie moge wczytaj strony"}
@@ -16,7 +52,7 @@ WSZYSTKIE_KRAJE=["Sprobuj: CheckCoronaStat"]
 
 
 
-PL_EN={}
+
 AngielskieSlowa={"country":"Panstwo:",
                  "testsPerOneMillion":"Testy na milion:",
                  "todayCases":"Dzisiejsze przypadki:",
@@ -126,18 +162,28 @@ def wypisz_date ():
     czas=datetime.now()    
     print (f"{'Stan na:':<25} {czas}")
 
-def zaladuj_nazwy_krajow():
-    PL_EN_={}
-    with open('kraje.json', 'r') as f:
-        PL_EN_=json.load(f)
-    return PL_EN_
 
 
 
 
+
+
+
+WYBRANE_KRAJE=sprawdz_ilosc_parametrow()
+kraje=dodaj_kraje_do_tablicy(WYBRANE_KRAJE)
+wypisz_kraje(kraje)
+wypisz_date()
+
+
+
+
+    
+    
 
 
 """
+#Niestety, Google blokuje jak się czesto slownik odpytuje
+#Zostawilem jednak kod
 def PRZETLUMACZ_EN2PL (WYBRANE_KRAJE_):
     moj_url='https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=pl&dt=t&q=$'
     for question in WYBRANE_KRAJE_:        
@@ -147,68 +193,5 @@ def PRZETLUMACZ_EN2PL (WYBRANE_KRAJE_):
         wynik=re.search(' [a-zA-Z ]*',str(HTML_BODY))
         wynik=wynik[0].strip()
         PL_EN[question.capitalize()]=wynik.capitalize()
-        sleep(2)
+        
 """        
-
-
-
-WYBRANE_KRAJE=sprawdz_ilosc_parametrow()
-PL_EN=zaladuj_nazwy_krajow()
-kraje=dodaj_kraje_do_tablicy(WYBRANE_KRAJE)
-wypisz_kraje(kraje)
-wypisz_date()
-
-
-#print (PL_EN)
-#print (WSZYSTKIE_KRAJE_NAZWA)
-#WSZYSTKIE_KRAJE_NAZWA.remove('')
-#WSZYSTKIE_KRAJE_NAZWA_z=list(dict.fromkeys(WSZYSTKIE_KRAJE_NAZWA))
-#WSZYSTKIE_KRAJE_NAZWA_z.remove('Total:')
-#WSZYSTKIE_KRAJE_NAZWA_z2=[]
-#for i in WSZYSTKIE_KRAJE_NAZWA_z:
-#    print (i)
-#    a=str(i).replace(" ","%20")
-#    WSZYSTKIE_KRAJE_NAZWA_z2.append(a)    
-#print (WSZYSTKIE_KRAJE_NAZWA_z[0])
-#PRZETLUMACZ_EN2PL(WSZYSTKIE_KRAJE_NAZWA_z2[1:])
-#PRZETLUMACZ_EN2PL(PL_EN)
-#print (type(WSZYSTKIE_KRAJE_NAZWA_z))
-#for i in WSZYSTKIE_KRAJE_NAZWA_z:
-#    print (i)
-#print (PL_EN)
-#print (WSZYSTKIE_KRAJE_NAZWA)
-#with open('kraje.json', 'w') as f:
-    #json.dump(PL_EN, f, ensure_ascii=False)
-
-
-    
-    
-
-"""
-with open('polskie.txt', 'r') as f:
-    polskie = f.read().splitlines()
-
-for licz,i in enumerate(angielskie):
-    slownik[i]=polskie[licz]
-
-with open('kraje.json', 'w') as f:
-    json.dump(slownik, f, ensure_ascii=False)
-"""
-"""
-"""
-
-"""
-question="norway"
-#question="North%20Macedonia"
-#moj_url='https://translate.googleapis.com/translate_a/single?client=gtx&sl=pl&tl=en&dt=t&q=${question}'
-
-
-przetlumaczone=urlopen(moj_url+question)
-HTML_BODY=przetlumaczone.read()
-#print (HTML_BODY)
-
-#wynik=re.search(' [a-zA-Z ]*',str(HTML_BODY))
-#print (re.sub('\[\[\[\"\$ ','',str(HTML_BODY)))
-
-#print (wynik[0].strip())
-"""
