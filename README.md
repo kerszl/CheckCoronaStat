@@ -1,3 +1,4 @@
+#CheckCoronaStat
 Program dziala na Pythonie 3.6 lub wyzszym
 
 [Linux] Sciagnij repozytorium a nastepnie zmien uprawnienia i uruchom
@@ -9,3 +10,5 @@ cd CheckCoronaStat
 chmod +x CheckCoronaStat.py
 
 ./CheckCoronaStat.py [countries]
+
+![ScreenShot](https://github.com/kerszl/CheckCoronaStat/blob/master/screen.png)
