@@ -71,13 +71,19 @@ WSZYSTKIE_KRAJE_PARAM=["kraje"]
 WSZYSTKIE_KRAJE=["Sprobuj: CheckCoronaStat"]
 
 
+#Sprawdzanie wersji nie ma sensu, bo i tak jest blad
+#
+#  File "./CheckCoronaStat.py", line 163
+#    wynik=str(co)+f" ({(co/z_ilu)*100:.1f}%)"
+#Macie na to jakas rade?
 
+"""
 def sprawdz_wersje_pythona():
     if sys.version_info<(3,6,0):
         print ("Niestety wymagana wersja pythona to 3.6 albo wyzsza")
         print ("Jednak jezeli chcesz, zeby program dzialal to pozamieniaj f-stringi")
         exit()
-    
+"""    
 
 
 
@@ -193,11 +199,6 @@ def wypisz_date ():
 
 
 
-
-
-
-
-sprawdz_wersje_pythona()
 WYBRANE_KRAJE=sprawdz_ilosc_parametrow()
 kraje=dodaj_kraje_do_tablicy(WYBRANE_KRAJE)
 wypisz_kraje(kraje)
