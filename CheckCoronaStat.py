@@ -76,6 +76,7 @@ def sprawdz_wersje_pythona():
     if sys.version_info<(3,6,0):
         print ("Niestety wymagana wersja pythona to 3.6 albo wyzsza")
         print ("Jednak jezeli chcesz, zeby program dzialal to pozamieniaj f-stringi")
+        exit()
     
 
 
