@@ -44,15 +44,7 @@ PL_EN={'Africa': 'Afryka', 'Albania': 'Albania', 'Algeria': 'Algieria', 'Andorra
 'Western%20Sahara': 'Sahara Zachodnia', 'World': 'Swiat', 
 'Yemen': 'Jemen', 'Zambia': 'Zambia', 'Zimbabwe': 'Zimbabwe'}
 
-LINK='https://coronavirus-19-api.herokuapp.com/countries/'
-BLEDY_POLACZENIA={"[Errno 11001] getaddrinfo failed":"Nie moge wczytaj strony"}
-BLEDY_JSON={"Country not found":"Nie ma takiego kraju:"}
-WSZYSTKIE_KRAJE_PARAM=["kraje"]
-WSZYSTKIE_KRAJE=["Sprobuj: CheckCoronaStat"]
-
-
-
-
+#Inne slowa do tlumaczenia
 AngielskieSlowa={"country":"Panstwo:",
                  "testsPerOneMillion":"Testy na milion:",
                  "todayCases":"Dzisiejsze przypadki:",
@@ -66,6 +58,17 @@ AngielskieSlowa={"country":"Panstwo:",
                  "recovered":"Wyleczeni:",
                  "critical":"W stanie krytycznym:"
                  }
+
+
+LINK='https://coronavirus-19-api.herokuapp.com/countries/'
+BLEDY_POLACZENIA={"[Errno 11001] getaddrinfo failed":"Nie moge wczytaj strony"}
+BLEDY_JSON={"Country not found":"Nie ma takiego kraju:"}
+WSZYSTKIE_KRAJE_PARAM=["kraje"]
+WSZYSTKIE_KRAJE=["Sprobuj: CheckCoronaStat"]
+
+
+
+
 
 
 
@@ -146,16 +149,35 @@ def dodaj_kraje_do_tablicy(WYBRANE_KRAJE):
         kraje[i]=JSON_DECODE_TRANS
     return kraje
 
+def policz_wypisz_procenty(co,z_ilu):
+    odstep2=14
+    #deaths=kraje[j][i]
+    #cases=kraje[j][AngielskieSlowa["cases"]]
+    wynik=str(co)+f" ({(co/z_ilu)*100:.1f}%)"                    
+    return f"{wynik:<{odstep2}}"
 
-def wypisz_kraje(kraje):
+
+
+def wypisz_kraje(kraje):    
     for i in AngielskieSlowa.values():
-        print (f"{i:25} ",end='')
+        odstep1=25
+        odstep2=14
+        print (f"{i:{odstep1}} ",end='')
         for j in kraje:
             k=j.replace("%20"," ")
             if kraje[j][i]==k:            
-                print (f"{PL_EN[j]:<10}",end='')
-            else:       
-                print (f"{kraje[j][i]:<10}",end='')
+                print (f"{PL_EN[j]:<{odstep2}}",end='')
+            else:                                      
+                if  i==AngielskieSlowa["deaths"]:
+                    print(policz_wypisz_procenty(kraje[j][i],kraje[j][AngielskieSlowa["cases"]]),end='')
+                elif i==AngielskieSlowa["critical"]:
+                    print(policz_wypisz_procenty(kraje[j][i],kraje[j][AngielskieSlowa["cases"]]),end='')
+                elif i==AngielskieSlowa["todayCases"]:
+                    print(policz_wypisz_procenty(kraje[j][i],kraje[j][AngielskieSlowa["cases"]]),end='')
+                elif i==AngielskieSlowa["recovered"]:
+                    print(policz_wypisz_procenty(kraje[j][i],kraje[j][AngielskieSlowa["cases"]]),end='')
+                else:
+                    print (f"{kraje[j][i]:<{odstep2}}",end='')
         print ("")
 
 def wypisz_date ():

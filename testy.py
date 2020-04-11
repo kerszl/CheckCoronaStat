@@ -30,9 +30,12 @@ print (AngielskieSlowa["testsPerOneMillion"])
 print (JakiesDane["testsPerOneMillion"])
 print (JakiesDaneTranslate)
 """
+"""
 tablica =["Western%20Sahara","Western%20Sahar"]
 
 for string in tablica:
 if "Western%20SahaRa".lower() in tablica:
     print("yest")
 #print ("pies".capitalize())
+"""
+print (f"{(9875/78991)*100:.000002f}")
