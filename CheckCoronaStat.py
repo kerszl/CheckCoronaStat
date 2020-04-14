@@ -89,15 +89,12 @@ def sprawdz_wersje_pythona():
         print ("Jednak jezeli chcesz, zeby program dzialal to pozamieniaj f-stringi")
         exit()
 """    
-"""
 def sprawdz_wersje_pythona():
     if sys.version_info.major >= 3 and sys.version_info.minor >= 6:
-        None
+        return True
     else:
-        print ("Niestety wymagana wersja pythona to 3.6 albo wyzsza")
-        print ("Jednak jezeli chcesz, zeby program dzialal to pozamieniaj f-stringi")
-        exit()
-"""
+        return False
+
 
 def wyswietl_wszystkie_kraje_swiata ():
     BODY=polacz_sie(LINK)
@@ -213,12 +210,15 @@ def wypisz_date ():
     print (f"{'Stan na:':<25} {czas}")
 
 
-
-WYBRANE_KRAJE=sprawdz_ilosc_parametrow()
-kraje=dodaj_kraje_do_tablicy(WYBRANE_KRAJE)
-wypisz_kraje(kraje)
-wypisz_date()
-
+if sprawdz_wersje_pythona() == True:
+    WYBRANE_KRAJE=sprawdz_ilosc_parametrow()
+    kraje=dodaj_kraje_do_tablicy(WYBRANE_KRAJE)
+    wypisz_kraje(kraje)
+    wypisz_date()
+else:
+    print("Niestety wymagana wersja pythona to 3.6 albo wyzsza.")
+    print("Jednak jezeli chcesz, zeby program dzialal to pozamieniaj f-stringi")
+    exit()
 
 
 
