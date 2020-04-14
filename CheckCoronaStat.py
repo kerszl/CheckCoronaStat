@@ -24,6 +24,7 @@ def zaladuj_nazwy_krajow():
         exit()
     return PL_EN_
 """
+
 PL_EN={'Africa': 'Afryka', 'Albania': 'Albania', 'Algeria': 'Algieria', 'Andorra': 'Andora', 'Angola': 'Angola', 'Anguilla': 'Anguilla', 'Antigua%20and%20Barbuda': 'Antigua i Barbuda', 'Argentina': 'Argentyna', 'Armenia': 'Armenia', 'Aruba': 'Aruba', 'Asia': 'Azja', 'Australia': 'Australia', 'Austria': 'Austria', 'Azerbaijan': 'Azerbejdzan', 
 'Bahamas': 'Bahamy', 'Bahrain': 'Bahrajn', 'Bangladesh': 'Bangladesz', 'Barbados': 'Barbados', 'Belarus': 'Bialorus', 'Belgium': 'Belgia', 'Belize': 'Belize', 'Benin': 'Benin', 'Bermuda': 'Bermudy', 'Bhutan': 'Bhutan', 'Bolivia': 'Boliwia', 'Bosnia%20and%20Herzegovina': 'Bosnia i Hercegowina', 'Botswana': 'Botswana', 'Brazil': 'Brazylia', 'British%20Virgin%20Islands': 'Brytyjskie Wyspy Dziewicze', 'Brunei': 'Brunei', 'Bulgaria': 'Bulgaria', 'Burkina%20Faso': 'Burkina Faso', 'Burundi': 'Burundi',
 'Cabo%20Verde': 'Cabo Verde', 'Cambodia': 'Kambodza', 'Cameroon': 'Kamerun', 'Canada': 'Kanada', 'Caribbean%20Netherlands': 'Karaiby Holandia', 'Cayman%20Islands': 'Kajmany', 'Chad': 'Czad', 'Channel%20Islands': 'Wyspy Normandzkie', 'Chile': 'Chile', 'China': 'Chiny', 'Colombia': 'Kolumbia', 'Congo': 'Kongo', 'Costa%20Rica': 'Kostaryka', 'Croatia': 'Chorwacja', 'Cuba': 'Kuba', 'CuraĂ§ao': 'Curacao', 'Cyprus': 'Cypr', 'Czechia': 'Czechy',
@@ -89,6 +90,13 @@ def sprawdz_wersje_pythona():
         print ("Jednak jezeli chcesz, zeby program dzialal to pozamieniaj f-stringi")
         exit()
 """    
+
+if sys.version_info.major <= 3 and sys.version_info.minor <= 6:
+    print ("Niestety wymagana wersja Pythona to 3.6 albo wyzsza")
+    print ("Jednak jezeli chcesz, zeby program dzialal to pozamieniaj f-stringi")
+    exit()
+    
+
 def sprawdz_wersje_pythona():
     if sys.version_info.major >= 3 and sys.version_info.minor >= 6:
         return True
