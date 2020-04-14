@@ -76,6 +76,9 @@ WSZYSTKIE_KRAJE=["Sprobuj: CheckCoronaStat"]
 #  File "./CheckCoronaStat.py", line 163
 #    wynik=str(co)+f" ({(co/z_ilu)*100:.1f}%)"
 #Macie na to jakas rade?
+#obie wersje sprawdz_wersje_pythona()" 
+#ponizej nie dzialają, wyswietla kod co jest powyżej
+
 
 """
 def sprawdz_wersje_pythona():
@@ -86,8 +89,15 @@ def sprawdz_wersje_pythona():
         print ("Jednak jezeli chcesz, zeby program dzialal to pozamieniaj f-stringi")
         exit()
 """    
-
-
+"""
+def sprawdz_wersje_pythona():
+    if sys.version_info.major >= 3 and sys.version_info.minor >= 6:
+        None
+    else:
+        print ("Niestety wymagana wersja pythona to 3.6 albo wyzsza")
+        print ("Jednak jezeli chcesz, zeby program dzialal to pozamieniaj f-stringi")
+        exit()
+"""
 
 def wyswietl_wszystkie_kraje_swiata ():
     BODY=polacz_sie(LINK)
@@ -168,7 +178,10 @@ def dodaj_kraje_do_tablicy(WYBRANE_KRAJE):
 
 def policz_wypisz_procenty(co,z_ilu):
     odstep2=14
-    wynik=str(co)+f" ({(co/z_ilu)*100:.1f}%)"                    
+    if co==None:
+        wynik="brak"
+    else:    
+        wynik=str(co)+f" ({(co/z_ilu)*100:.1f}%)"
     return f"{wynik:<{odstep2}}"
 
 
