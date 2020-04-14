@@ -79,7 +79,9 @@ WSZYSTKIE_KRAJE=["Sprobuj: CheckCoronaStat"]
 
 """
 def sprawdz_wersje_pythona():
-    if sys.version_info<(3,6,0):
+    if sys.version_info.major >= 3 and sys.version_info.minor >= 6:
+        None
+    else:
         print ("Niestety wymagana wersja pythona to 3.6 albo wyzsza")
         print ("Jednak jezeli chcesz, zeby program dzialal to pozamieniaj f-stringi")
         exit()
